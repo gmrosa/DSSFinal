@@ -2,6 +2,6 @@ package com.mycuteblog.service;
 
 import com.mycuteblog.model.ApiRequest;
 
-public interface ApiRequestService {
-    void create(ApiRequest apiRequest);
+public interface ApiRequestService extends GenericCrudService<ApiRequest> {
+
 }

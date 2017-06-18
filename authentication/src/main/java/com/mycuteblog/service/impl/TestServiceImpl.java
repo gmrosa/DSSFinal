@@ -1,26 +1,27 @@
 package com.mycuteblog.service.impl;
 
-import com.mycuteblog.dao.ApiRequestDao;
-import com.mycuteblog.model.ApiRequest;
-import com.mycuteblog.service.ApiRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mycuteblog.dao.TestDao;
+import com.mycuteblog.model.Test;
+import com.mycuteblog.service.TestService;
+
 @Service
 @Transactional
-public class ApiRequestServiceImpl implements ApiRequestService {
+public class TestServiceImpl implements TestService {
 
 	@Autowired
-	private ApiRequestDao dao;
+	private TestDao dao;
 
 	@Override
-	public void create(ApiRequest apiRequest) {
+	public void create(Test apiRequest) {
 		dao.create(apiRequest);
 	}
 
 	@Override
-	public void update(ApiRequest apiRequest) {
+	public void update(Test apiRequest) {
 		dao.update(apiRequest);
 	}
 
@@ -30,7 +31,7 @@ public class ApiRequestServiceImpl implements ApiRequestService {
 	}
 
 	@Override
-	public ApiRequest getById(Long id) {
+	public Test getById(Long id) {
 		return dao.getById(id);
 	}
 
