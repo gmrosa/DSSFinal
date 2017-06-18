@@ -1,9 +1,9 @@
-package com.mycuteblog;
+package br.com.furb;
 
-import com.mycuteblog.model.ApiRequest;
-import com.mycuteblog.model.Test;
-import com.mycuteblog.service.ApiRequestService;
-import com.mycuteblog.service.TestService;
+import br.com.furb.model.ApiRequest;
+import br.com.furb.model.Test;
+import br.com.furb.service.ApiRequestService;
+import br.com.furb.service.TestService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

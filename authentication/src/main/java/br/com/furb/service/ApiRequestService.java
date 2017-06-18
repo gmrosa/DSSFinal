@@ -1,6 +1,6 @@
-package com.mycuteblog.service;
+package br.com.furb.service;
 
-import com.mycuteblog.model.ApiRequest;
+import br.com.furb.model.ApiRequest;
 
 public interface ApiRequestService extends GenericCrudService<ApiRequest> {
 

@@ -1,4 +1,4 @@
-package com.mycuteblog;
+package br.com.furb;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;

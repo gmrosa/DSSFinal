@@ -1,6 +1,6 @@
-package com.mycuteblog.dao;
+package br.com.furb.dao;
 
-import com.mycuteblog.model.ApiRequest;
+import br.com.furb.model.ApiRequest;
 
 public interface ApiRequestDao extends GenericDao<ApiRequest> {
 

@@ -1,12 +1,12 @@
-package com.mycuteblog.service.impl;
+package br.com.furb.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mycuteblog.dao.TestDao;
-import com.mycuteblog.model.Test;
-import com.mycuteblog.service.TestService;
+import br.com.furb.dao.TestDao;
+import br.com.furb.model.Test;
+import br.com.furb.service.TestService;
 
 @Service
 @Transactional

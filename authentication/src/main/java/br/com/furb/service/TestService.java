@@ -1,6 +1,6 @@
-package com.mycuteblog.service;
+package br.com.furb.service;
 
-import com.mycuteblog.model.Test;
+import br.com.furb.model.Test;
 
 public interface TestService extends GenericCrudService<Test> {
 

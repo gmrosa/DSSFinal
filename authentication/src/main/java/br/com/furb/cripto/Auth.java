@@ -1,12 +1,9 @@
-package br.com.furb;
+package br.com.furb.cripto;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import br.com.furb.cripto.AccountsGenerator;
-import br.com.furb.cripto.PermissionsGenerator;
-import br.com.furb.cripto.Sha256;
 import br.com.furb.enumeration.Obj;
 import br.com.furb.enumeration.Permission;
 import br.com.furb.enumeration.Role;

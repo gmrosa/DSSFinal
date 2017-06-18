@@ -1,4 +1,4 @@
-package br.com.furb;
+package br.com.furb.cripto;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-
-import br.com.furb.cripto.Sha256;
 
 @RunWith(Parameterized.class)
 public class AuthTest {

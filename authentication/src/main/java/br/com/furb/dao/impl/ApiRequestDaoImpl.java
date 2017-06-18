@@ -1,12 +1,12 @@
-package com.mycuteblog.dao.impl;
+package br.com.furb.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.mycuteblog.dao.ApiRequestDao;
-import com.mycuteblog.model.ApiRequest;
+import br.com.furb.dao.ApiRequestDao;
+import br.com.furb.model.ApiRequest;
 
 @Repository
 public class ApiRequestDaoImpl implements ApiRequestDao {

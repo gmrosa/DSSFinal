@@ -176,3 +176,6 @@ Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the ap
 2017-06-18 00:40:43 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
 select name from user [42102-192]
+2017-06-18 00:50:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
+select name from user [42102-192]

@@ -1,12 +1,12 @@
-package com.mycuteblog.dao.impl;
+package br.com.furb.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.mycuteblog.dao.TestDao;
-import com.mycuteblog.model.Test;
+import br.com.furb.dao.TestDao;
+import br.com.furb.model.Test;
 
 @Repository
 public class TestDaoImpl implements TestDao {

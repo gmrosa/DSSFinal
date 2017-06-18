@@ -1,4 +1,4 @@
-package com.mycuteblog.service;
+package br.com.furb.service;
 
 public interface GenericCrudService<Entity> {
 

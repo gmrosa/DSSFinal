@@ -1,4 +1,4 @@
-package com.mycuteblog.model;
+package br.com.furb.model;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package com.mycuteblog.dao;
+package br.com.furb.dao;
 
-import com.mycuteblog.service.GenericCrudService;
+import br.com.furb.service.GenericCrudService;
 
 public interface GenericDao<Entity> extends GenericCrudService<Entity> {
 
