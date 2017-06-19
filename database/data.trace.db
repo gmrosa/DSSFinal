@@ -179,3 +179,10 @@ select name from user [42102-192]
 2017-06-18 00:50:05 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Table "USER" not found; SQL statement:
 select name from user [42102-192]
+2017-06-18 01:26:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USER" already exists; SQL statement:
+CREATE TABLE USER(ID INT PRIMARY KEY, 
+                                           NAME VARCHAR(32) NOT NULL,
+                                           ROLE INT NOT NULL,
+                                           SALT VARCHAR(32),
+                                           PASSWORD VARCHAR(64)) [42101-192]

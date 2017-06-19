@@ -4,6 +4,8 @@ import br.com.furb.dao.ApiRequestDao;
 import br.com.furb.model.ApiRequest;
 import br.com.furb.service.ApiRequestService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +33,13 @@ public class ApiRequestServiceImpl implements ApiRequestService {
 	}
 
 	@Override
-	public ApiRequest getById(Long id) {
-		return dao.getById(id);
+	public ApiRequest find(Long id) {
+		return dao.find(id);
+	}
+
+	@Override
+	public List<ApiRequest> findAll() {
+		return dao.findAll();
 	}
 
 }

@@ -20,9 +20,9 @@ public class AccountsGenerator {
 
 		try (PrintWriter out = new PrintWriter(usersFile)) {
 			for (int i = 0; i < 100; i++) {
-				String salt = UUID.randomUUID().toString();
-				String user = "usuario" + i;
-				String password = "senhateste" + i;
+				String salt = UUID.randomUUID().toString().replace("-", "");
+				String user = "user" + i;
+				String password = "password" + i;
 				String secret = salt + password;
 
 				out.println(user + ";" + new Random().nextInt(3) + ";" + salt + ";" + Sha256.getHash(secret));

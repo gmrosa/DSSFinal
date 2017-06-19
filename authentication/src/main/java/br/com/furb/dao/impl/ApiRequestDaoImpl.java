@@ -1,5 +1,7 @@
 package br.com.furb.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -26,15 +28,21 @@ public class ApiRequestDaoImpl implements ApiRequestDao {
 
 	@Override
 	public void delete(Long id) {
-		ApiRequest apiRequest = getById(id);
+		ApiRequest apiRequest = find(id);
 		if (apiRequest != null) {
 			entityManager.remove(apiRequest);
 		}
 	}
 
 	@Override
-	public ApiRequest getById(Long id) {
+	public ApiRequest find(Long id) {
 		return entityManager.find(ApiRequest.class, id);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ApiRequest> findAll() {
+		return entityManager.createNamedQuery("ApiRequest.findAll").getResultList();
 	}
 
 }

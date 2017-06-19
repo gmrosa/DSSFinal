@@ -1,27 +1,29 @@
 package br.com.furb.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.furb.dao.TestDao;
-import br.com.furb.model.Test;
-import br.com.furb.service.TestService;
+import br.com.furb.dao.UserDao;
+import br.com.furb.model.User;
+import br.com.furb.service.UserService;
 
 @Service
 @Transactional
-public class TestServiceImpl implements TestService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private TestDao dao;
+	private UserDao dao;
 
 	@Override
-	public void create(Test apiRequest) {
+	public void create(User apiRequest) {
 		dao.create(apiRequest);
 	}
 
 	@Override
-	public void update(Test apiRequest) {
+	public void update(User apiRequest) {
 		dao.update(apiRequest);
 	}
 
@@ -31,8 +33,13 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public Test getById(Long id) {
-		return dao.getById(id);
+	public User find(Long id) {
+		return dao.find(id);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return dao.findAll();
 	}
 
 }
