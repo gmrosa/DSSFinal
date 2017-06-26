@@ -2,47 +2,42 @@ package br.com.furb.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import br.com.furb.dao.UserDao;
 import br.com.furb.model.User;
 
 @Repository
-public class UserDaoImpl implements UserDao {
-
-	@PersistenceContext
-	private EntityManager entityManager;
+public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
 	@Override
-	public void create(User apiRequest) {
-		entityManager.persist(apiRequest);
+	public void create(User user) {
+		super.create(user);
 	}
 
 	@Override
-	public void update(User apiRequest) {
-		entityManager.merge(apiRequest);
+	public void update(User user) {
+		super.update(user);
 	}
 
 	@Override
 	public User find(Long id) {
-		return entityManager.find(User.class, id);
+		return super.find(id);
 	}
 
 	@Override
 	public void delete(Long id) {
-		User user = find(id);
-		if (user != null) {
-			entityManager.remove(user);
-		}
+		super.delete(id);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<User> findAll() {
-		return entityManager.createQuery("from user").getResultList();
+		return super.findAll();
+	}
+
+	@Override
+	public Class<User> getClazz() {
+		return User.class;
 	}
 
 }

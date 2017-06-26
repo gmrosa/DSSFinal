@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService {
 	private UserDao dao;
 
 	@Override
-	public void create(User apiRequest) {
-		dao.create(apiRequest);
+	public void create(User user) {
+		dao.create(user);
 	}
 
 	@Override
-	public void update(User apiRequest) {
-		dao.update(apiRequest);
+	public void update(User user) {
+		dao.update(user);
 	}
 
 	@Override
