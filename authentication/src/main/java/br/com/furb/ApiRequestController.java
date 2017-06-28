@@ -14,99 +14,83 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.furb.enumeration.Role;
+import br.com.furb.controller.UserController;
 import br.com.furb.model.User;
-import br.com.furb.service.UserService;
 
 @RestController
 @EnableAutoConfiguration
 /**
- * Extensão do chrome para testar os comandos https://chrome.google.com/webstore/detail/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog
+ * Extensão do chrome para testar os comandos
+ * https://chrome.google.com/webstore/detail/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog
  */
 public class ApiRequestController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserController userController;
 
-	private static final Logger logger = LoggerFactory.getLogger(ApiRequestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ApiRequestController.class);
 
-	/**
-	 * GET http://localhost:8080/
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpStatus getHome() {
-		logger.info("getHome");
+    /**
+     * GET http://localhost:8080/
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus getHome() {
+        logger.info("getHome");
 
-		return HttpStatus.OK;
-	}
+        return HttpStatus.OK;
+    }
 
-	/**
-	 * GET http://localhost:8080/User/1
-	 */
-	@RequestMapping(value = "/User/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User getUser(@PathVariable Long id) {
-		logger.info("getUser");
+    /**
+     * GET http://localhost:8080/User/1
+     */
+    @RequestMapping(value = "/User/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getUser(@PathVariable Long id) {
+        logger.info("getUser");
 
-		User user = userService.find(id);
-		return user;
-	}
+        User user = userController.find(id);
+        return user;
+    }
 
-	/**
-	 * DELETE http://localhost:8080/User/1
-	 */
-	@RequestMapping(value = "/User/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpStatus deleteUser(@PathVariable Long id) {
-		logger.info("deleteUser");
+    /**
+     * DELETE http://localhost:8080/User/1
+     */
+    @RequestMapping(value = "/User/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus deleteUser(@PathVariable Long id) {
+        logger.info("deleteUser");
 
-		userService.delete(id);
-		return HttpStatus.OK;
-	}
+        //userController.delete(id);
+        return HttpStatus.OK;
+    }
 
-	/**
-	 * PUT http://localhost:8080/User?id=1&role=1
-	 */
-	@RequestMapping(value = "/User", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpStatus updateUserRole(@RequestParam("id") Long id, @RequestParam("role") Integer role) {
-		logger.info("updateUserRole");
+    /**
+     * PUT http://localhost:8080/User?id=1&role=1
+     */
+    @RequestMapping(value = "/User", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus updateUserRole(@RequestParam("id") Long id, @RequestParam("role") Integer role) {
+        logger.info("updateUserRole");
+        return userController.updateUserRole(id, role);
+    }
 
-		User user = userService.find(id);
-		user.setRole(Role.values()[role]);
-		userService.update(user);
+    /**
+     * POST http://localhost:8080/User?name=teste&role=1&salt=1&password=1
+     */
+    @RequestMapping(value = "/User", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus createNewUser( //
+            @RequestParam("name") String name, //
+            @RequestParam("role") Integer role, //
+            @RequestParam("password") String password) {
 
-		return HttpStatus.OK;
-	}
+        logger.info("createNewUser");
+        return userController.createNewUser(name, role, password);
+    }
 
-	/**
-	 * POST http://localhost:8080/User?name=teste&role=1&salt=1&password=1
-	 */
-	@RequestMapping(value = "/User", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HttpStatus addUser( //
-			@RequestParam("name") String name, //
-			@RequestParam("role") Integer role, //
-			@RequestParam("salt") String salt, //
-			@RequestParam("password") String password) {
-
-		logger.info("addUser");
-
-		User user = new User();
-		user.setName(name);
-		user.setRole(Role.values()[role]);
-		user.setSalt(salt);
-		user.setPassword(password);
-
-		userService.create(user);
-
-		return HttpStatus.OK;
-	}
-
-	/**
-	 * GET http://localhost:8080/Users
-	 */
-	@RequestMapping(value = "/Users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getUsers() {
-		logger.info("getUsers");
-
-		return userService.findAll();
-	}
+    /**
+     * GET http://localhost:8080/Users
+     */
+    @RequestMapping(value = "/Users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> getUsers() {
+        logger.info("getUsers");
+        return userController.findAll();
+    }
 
 }

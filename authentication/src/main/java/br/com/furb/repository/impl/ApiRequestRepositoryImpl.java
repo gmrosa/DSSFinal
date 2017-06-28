@@ -1,4 +1,4 @@
-package br.com.furb.dao.impl;
+package br.com.furb.repository.impl;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.furb.dao.ApiRequestDao;
 import br.com.furb.model.ApiRequest;
+import br.com.furb.repository.ApiRequestRepository;
 
 @Repository
-public class ApiRequestDaoImpl implements ApiRequestDao {
+public class ApiRequestRepositoryImpl implements ApiRequestRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;

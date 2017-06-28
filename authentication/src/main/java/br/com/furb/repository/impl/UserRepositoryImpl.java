@@ -1,14 +1,14 @@
-package br.com.furb.dao.impl;
+package br.com.furb.repository.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.furb.dao.UserDao;
 import br.com.furb.model.User;
+import br.com.furb.repository.UserRepository;
 
 @Repository
-public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
+public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements UserRepository {
 
 	@Override
 	public void create(User user) {
