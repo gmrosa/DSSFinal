@@ -16,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "name", nullable = false, length = 32)
+    @Column(name = "name", unique = true, nullable = false, length = 32)
     private String name;
     @Column(name = "role", nullable = false, length = 2)
     private Role role;
@@ -24,10 +24,10 @@ public class User {
     private String salt;
     @Column(name = "password", nullable = false, length = 64)
     private String password;
-    @Column(name = "essence", nullable = false, length = 64)
+    @Column(name = "essence", nullable = true, length = 64)
     private String essence;
-    //@Column(name = "card", nullable = true, length = 16)
-    //private String card;
+    @Column(name = "card", nullable = true, length = 256)
+    private String card;
 
     public User() {
 
@@ -90,17 +90,17 @@ public class User {
         this.essence = essence;
     }
 
-    //    public String getCard() {
-    //        return card;
-    //    }
-    //
-    //    public void setCard(String card) {
-    //        this.card = card;
-    //    }
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", role=" + role + ", salt=" + salt + ", password=" + password + "]";
+        return "User [id=" + id + ", name=" + name + ", role=" + role + ", salt=" + salt + ", password=" + password + ", card=" + card + "]";
     }
 
 }

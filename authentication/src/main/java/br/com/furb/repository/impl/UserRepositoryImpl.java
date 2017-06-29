@@ -15,7 +15,7 @@ public class UserRepositoryImpl extends GenericRepositoryImpl<User> implements U
     public Class<User> getClazz() {
         return User.class;
     }
-    
+
     @Override
     public void create(User user) {
         super.create(user);

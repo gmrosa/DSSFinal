@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.furb.controller.UserController;
+import br.com.furb.cripto.MyBase64;
+import br.com.furb.cripto.OneTimeXor;
 import br.com.furb.cripto.Sha256;
 import br.com.furb.enumeration.Role;
 import br.com.furb.model.User;
+import br.com.furb.model.converter.UserDTOConverter;
+import br.com.furb.model.dto.UserDTO;
 import br.com.furb.repository.UserRepository;
 
 @Service
 @Transactional
 public class UserControllerImpl implements UserController {
+
+    public static final String key = "12345ABCDE543210";
 
     @Autowired
     private UserRepository repository;
@@ -25,21 +31,40 @@ public class UserControllerImpl implements UserController {
         return Sha256.getHash64(secret);
     }
 
+    private void update(User user) {
+        user.setEssence(Sha256.getHash(user.toString()));
+        repository.update(user);
+    }
+
     @Override
     public User find(Long id) {
         return repository.find(id);
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserDTO> findAll(Role role) {
+        List<UserDTO> users = UserDTOConverter.toDTO(repository.findAll());
+
+        OneTimeXor otx = new OneTimeXor(UserControllerImpl.key);
+        users.forEach(dto -> {
+            if (role == Role.EMPLOYEE) {
+                dto.card = null;
+            } else {
+                if (dto.card != null) {
+                    dto.card = new String(otx.decrypt(MyBase64.decode(dto.card)));
+                }
+            }
+        });
+        return users;
     }
 
     @Override
     public boolean delete(Long id) {
-        repository.delete(id);
-
-        return true;
+        if (id > 1) {
+            repository.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -55,8 +80,10 @@ public class UserControllerImpl implements UserController {
         String salt = UUID.randomUUID().toString().replace("-", "");
         user.setSalt(salt);
         user.setPassword(getSecret(salt, password));
-        user.setEssence(Sha256.getHash(user.toString()));
         repository.create(user);
+
+        user = repository.findByName(name);
+        update(user);
 
         return true;
     }
@@ -65,7 +92,17 @@ public class UserControllerImpl implements UserController {
     public boolean updateUserRole(Long id, Integer role) {
         User user = find(id);
         user.setRole(Role.values()[role]);
-        repository.update(user);
+        update(user);
+
+        return true;
+    }
+
+    @Override
+    public boolean updateUserCard(Long id, String card) {
+        User user = find(id);
+        OneTimeXor otx = new OneTimeXor(key);
+        user.setCard(new String(MyBase64.encode(otx.encrypt(card.getBytes()))));
+        update(user);
 
         return true;
     }
