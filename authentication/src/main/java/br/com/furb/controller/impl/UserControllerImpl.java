@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +22,7 @@ public class UserControllerImpl implements UserController {
 
     private String getSecret(String salt, String password) {
         String secret = salt + password;
-        return Sha256.getHash(secret);
+        return Sha256.getHash64(secret);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class UserControllerImpl implements UserController {
         String salt = UUID.randomUUID().toString().replace("-", "");
         user.setSalt(salt);
         user.setPassword(getSecret(salt, password));
-
+        user.setEssence(Sha256.getHash(user.toString()));
         repository.create(user);
 
         return true;

@@ -63,7 +63,7 @@ public class WebRequest {
     }
 
     /**
-     * TODO DELETE https://localhost:8075/user?name=admin&password=admin&id=3
+     * DELETE https://localhost:8075/user?name=admin&password=admin&id=3
      */
     @RequestMapping(value = "/user", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpStatus deleteUser( //
@@ -84,7 +84,7 @@ public class WebRequest {
     }
 
     /**
-     * TODO PUT https://localhost:8075/user?name=admin&password=admin&id=1&role=1
+     * PUT https://localhost:8075/user?name=admin&password=admin&id=4&role=1
      */
     @RequestMapping(value = "/user", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpStatus updateUserRole( //
