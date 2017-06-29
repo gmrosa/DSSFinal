@@ -2,8 +2,7 @@ package br.com.furb.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-
+import br.com.furb.enumeration.Role;
 import br.com.furb.model.User;
 
 public interface UserController {
@@ -11,9 +10,17 @@ public interface UserController {
     User find(Long id);
 
     List<User> findAll();
+    
+    boolean delete(Long id);
 
-    HttpStatus createNewUser(String name, Integer role, String password);
+    boolean createNewUser(String name, Integer role, String password);
 
-    HttpStatus updateUserRole(Long id, Integer role);
+    boolean updateUserRole(Long id, Integer role);
+
+    boolean login(String name, String password);
+    
+    Role getUserRole(String name);
+    
+    boolean isAdmin(String name);
 
 }

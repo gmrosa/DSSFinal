@@ -11,6 +11,8 @@ public interface GenericRepository<Entity> {
     void delete(Long id);
 
     Entity find(Long id);
+    
+    Entity findSpecial(String sql);
 
     List<Entity> findAll();
 

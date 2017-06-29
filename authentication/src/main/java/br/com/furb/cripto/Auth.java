@@ -16,7 +16,6 @@ public class Auth {
 		File permissionsFile = new File(dir.getAbsolutePath() + File.separator + "permissions.csv");
 
 		if (!usersFile.exists()) {
-			AccountsGenerator.main(null);
 			PermissionsGenerator.main(null);
 		}
 

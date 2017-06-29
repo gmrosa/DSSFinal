@@ -36,6 +36,7 @@ public class WebConfiguration {
 
     @Bean
     ServletRegistrationBean h2servletRegistration() {
+        // JDBC URL: jdbc:h2:../database/data
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
